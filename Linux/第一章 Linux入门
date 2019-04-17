@@ -1,0 +1,72 @@
+  1.Linux介绍
+    开源、免费的操作系统
+    创始人 林纳斯
+    吉祥物 企鹅Tux
+    主要发行版本: Ubuntu/RedHat/CenterOS  (基于Linux内核)
+
+2.Linux和Unix的关系
+
+
+
+3.环境配置安装
+    windows -- vmware -- CentOS
+
+
+    双击进入虚拟机界面
+    Ctrl + Alt  退出虚拟机
+
+4. 终端了解  及  联网
+
+
+5.Linux目录结构
+
+    层级式的树状目录结构，最上层是根目录“/”
+    在Linux世界里，一切皆文件（即使是一个硬件设备，也是使用文本来标志）
+
+6.远程操作Linux
+
+    XShell5 远程登录
+    XFtp/WinSCP   远程上传下载
+
+    软件使用前提: 需要Linux开启一个sshd服务，占用22端口
+
+
+    XShell使用:
+        新建会话: 名称 + 主机名  +  端口
+        Linux登录 账号/密码
+
+    XFtp/WinSCP:
+        基于Windows平台的SFTP、FTP文件传输协议
+        名称+主机名+SFTP协议+22号端口
+        用户名+密码
+
+
+
+
+    7. VI和VIM(Linux内建Vi编辑器)
+
+        vim编辑器 vi增强版
+        VI的三种模式
+        1，正常模式   --进入文档就是正常模式
+        2，编辑模式   --可输入内容          i a o r 进入
+        3，命令行模式 --提供指令，完成读取，存盘，替换，离开等操作
+
+
+        转换符  :  esc   i/a/o/r    :q/:wq/:q!
+
+        快捷键  ： 5yy p  复制5行-粘贴
+                   5dd   删除5行
+
+        关机重启命令
+
+            shutdown
+                shutdown -h now 立即关机
+                shutdown -h 1   1分钟后关机
+                shutdown -r now 立即重启
+
+            reboot
+                重启计算机
+            halt
+                直接关机
+            syn
+                内存数据保存到磁盘
