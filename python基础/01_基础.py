@@ -51,6 +51,11 @@
             Python解释器干了两件事情：
                 在内存中创建了一个'ABC'的字符串；
                 在内存中创建了一个名为a的变量，并把它指向'ABC'。
+
+    常量
+            常量就是不能变的变量，比如常用的数学常数π就是一个常量。在Python中，通常用全部大写的变量名表示常量：
+            PI = 3.14159265359
+            但事实上PI仍然是一个变量，Python根本没有任何机制保证PI不会被改变
 '''
 
 
@@ -68,7 +73,7 @@ print(not True)
 print(True and False)
 print(True or False)
 
-c='ABC'
-d =c
-c='XYZ'
+c='ABC' #解释器创建了字符串'ABC'和变量c，并把c指向'ABC'
+d =c    #解释器创建了变量d，并把d指向c指向的字符串'ABC'
+c='XYZ' #解释器创建了字符串'XYZ'，并把c的指向改为'XYZ'，但d并没有更改
 print(d) #d='ABC'
