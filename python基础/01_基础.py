@@ -58,22 +58,85 @@
             但事实上PI仍然是一个变量，Python根本没有任何机制保证PI不会被改变
 '''
 
+'''
+字符串编码
+    ASCII编码和Unicode编码的区别：ASCII编码是1个字节，而Unicode编码通常是2个字节。
+    如果统一成Unicode编码，乱码问题从此消失了。用Unicode编码比ASCII编码需要多一倍的存储空间，在存储和传输上就十分不划算。
+    又出现了把Unicode编码转化为“可变长编码”的UTF-8编码。
 
-print('Hello,你好'\
-)
-a = 3
-b = 5
-print('3+5={:d}'.format(a+b))
-print("I'm OK")
-print('I\'m \"OK\"')
-print(True)
-print(False)
-print(3>2)
-print(not True)
-print(True and False)
-print(True or False)
+    计算机系统通用的字符编码工作方式：
+    在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
 
-c='ABC' #解释器创建了字符串'ABC'和变量c，并把c指向'ABC'
-d =c    #解释器创建了变量d，并把d指向c指向的字符串'ABC'
-c='XYZ' #解释器创建了字符串'XYZ'，并把c的指向改为'XYZ'，但d并没有更改
-print(d) #d='ABC'
+    Python提供了ord()函数获取字符的整数表示，chr()函数把编码转换为对应的字符。
+    把str变为以字节为单位的bytes
+    Python对bytes类型的数据用带b前缀的单引号或双引号表示：x = b'ABC'
+    区分'ABC'和b'ABC'，前者是str，后者虽然内容显示得和前者一样，但bytes的每个字符都只占用一个字节。
+
+    以Unicode表示的str通过encode()方法可以编码为指定的bytes.
+    要把bytes变为str，就需要用decode()方法.
+    bytes中只有一小部分无效的字节，可以传入errors='ignore'忽略错误的字节
+
+    计算str包含多少个字符，可以用len()函数
+    len()函数计算的是str的字符数，如果换成bytes，len()函数就计算字节数
+    1个中文字符经过UTF-8编码后通常会占用3个字节，而1个英文字符只占用1个字节。
+    经常遇到str和bytes的互相转换。为了避免乱码问题，应当始终坚持使用UTF-8编码对str和bytes进行转换。
+
+    #!/usr/bin/env python3
+    # -*- coding: utf-8 -*-
+    第一行注释是为了告诉Linux/OS X系统，这是一个Python可执行程序，Windows系统会忽略这个注释；
+
+    第二行注释是为了告诉Python解释器，按照UTF-8编码读取源代码，否则，你在源代码中写的中文输出可能会有乱码。
+
+    申明了UTF-8编码并不意味着你的.py文件就是UTF-8编码的，必须并且要确保文本编辑器正在使用UTF-8 without BOM编码
+
+格式化
+
+    方法1: 占位符
+
+        在Python中，采用的格式化方式和C语言是一致的，用%实现
+         'Hello, %s' % 'world'
+         'Hi, %s, you have $%d.' % ('Michael', 1000000)'
+
+         常见的占位符有：
+            占位符	替换内容
+                %d	整数
+                %f	浮点数
+                %s	字符串
+                %x	十六进制整数
+
+     方法2: format()
+            另一种格式化字符串的方法是使用字符串的format()方法，
+            它会用传入的参数依次替换字符串内的占位符{0}、{1}……，
+            不过这种方式写起来比%要麻烦得多
+
+            'Hello, {0}, 成绩提升了 {1:.1f}%'.format('小明', 17.125)
+
+
+'''
+# print('Hello,你好'\
+# )
+# a = 3
+# b = 5
+# print('3+5={:d}'.format(a+b))
+# print("I'm OK")
+# print('I\'m \"OK\"')
+# print(True)
+# print(False)
+# print(3>2)
+# print(not True)
+# print(True and False)
+# print(True or False)
+#
+# c='ABC' #解释器创建了字符串'ABC'和变量c，并把c指向'ABC'
+# d =c    #解释器创建了变量d，并把d指向c指向的字符串'ABC'
+# c='XYZ' #解释器创建了字符串'XYZ'，并把c的指向改为'XYZ'，但d并没有更改
+# print(d) #d='ABC'
+#
+# print(ord('A'))
+# print(chr(65))
+print(b'ABC'.decode('ascii'))
+print(b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8'))
+print( b'\xe4\xb8\xad\xff'.decode('utf-8', errors='ignore'))
+print(len('ABCD'))
+
+print('Hello, {0}, 成绩提升了 {1:.2f}%'.format('小明', 17.125))

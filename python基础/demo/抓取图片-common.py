@@ -13,9 +13,40 @@ import os
 
 # config 抓取地址
 
+# 明星站
+# ConfigBaseUrl = "http://www.mingxingtp.com"
+# ConfigPerson = "/neidimingxing/zhaoliying/28825"
+# ConfigPages = 15
+# ConfigDivKey = "class"
+# ConfigDivValue =  "picsbox picsboxcenter chenxing_pic_images"
 
+# 街拍站
+# ConfigBaseUrl = "http://www.meituba.com"
+# ConfigPerson = "/meinv/jiepai/105380"
+# ConfigPages = 15
+# ConfigDivKey = "class"
+# ConfigDivValue =  "photo"
+
+
+# https://www.2717.com
+# https://www.2717.com/tag/634.html
+# ConfigBaseUrl = "http://www.2717.com/ent"
+# ConfigPerson = "/meinvtupian/2018/278223"
+# ConfigPages = 15
+# ConfigDivKey = "class"
+# ConfigDivValue =  "articleV4Body"
+
+
+# https://www.2717.com
+# https://www.2717.com/tag/634.html
+# ConfigBaseUrl = "http://www.2717.com/ent"
+# ConfigPerson = "/meinvtupian/2018/278223"
+# ConfigPages = 15
+# ConfigDivKey = "class"
+# ConfigDivValue =  "articleV4Body"
+# http://www.onn9.com/?p=18793
 ConfigBaseUrl = "http://www.onn9.com/?p="
-ConfigPerson = "18094"
+ConfigPerson = "18793"
 ConfigPages = 2
 ConfigDivKey = "class"
 ConfigDivValue =  "single-content"
@@ -29,6 +60,8 @@ for i in range(1,ConfigPages):
 	 else:
 	 	 str_i ="_"+ str(i)
 
+	 # item = ('%s%s%s.html'  %  (ConfigBaseUrl,ConfigPerson,str_i))
+	 # item = ('%s%s%s.htm'  %  (ConfigBaseUrl,ConfigPerson,str_i))
 	 item = ('%s%s'  %  (ConfigBaseUrl,ConfigPerson))
 	 URLS.insert(i,item)
 
@@ -57,11 +90,9 @@ for URL in URLS:
 		img_item = ul.find_all('img')
 		imgs+=img_item
 
-	print(imgs)
-
 	#一一访问图片并下载
 	for img in imgs:
-	    url = img['data-original']
+	    url = img['src']
 	    r = requests.get(url, stream=True)
 	    image_name = url.split('/')[-1]
 	    with open('%s%s' % (dir, image_name),'wb') as f:
