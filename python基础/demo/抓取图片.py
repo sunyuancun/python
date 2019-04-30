@@ -15,7 +15,7 @@ import os
 
 
 ConfigBaseUrl = "http://www.onn9.com/?p="
-ConfigPerson = "18094"
+ConfigPerson = "18766"
 ConfigPages = 2
 ConfigDivKey = "class"
 ConfigDivValue =  "single-content"
